@@ -7,8 +7,9 @@ resource "aws_lb_listener" "my-alb-listener-1" {
     target_group_arn = aws_lb_target_group.tg1.arn
   }
 }
+
 resource "aws_lb_listener_rule" "listener_rule1" {
-  listener_arn = aws_lb_listener.front_end.arn
+  listener_arn = aws_lb_listener.my-alb-listener-1.arn
   priority     = 100
 
   action {
@@ -18,13 +19,13 @@ resource "aws_lb_listener_rule" "listener_rule1" {
 
   condition {
     path_pattern {
-      values = ["/path1*"]
+      values = ["/cart", "/images"]
     }
   }
 }
 
 resource "aws_lb_listener_rule" "listener_rule2" {
-  listener_arn = aws_lb_listener.front_end.arn
+  listener_arn = aws_lb_listener.my-alb-listener-1.arn
   priority     = 200
 
   action {
@@ -34,7 +35,7 @@ resource "aws_lb_listener_rule" "listener_rule2" {
 
   condition {
     path_pattern {
-      values = ["/path2*"]
+      values = ["/register", "/van"]
     }
   }
 }

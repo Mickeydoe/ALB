@@ -12,18 +12,7 @@ resource "aws_lb" "mike_alb" {
 }
 
 
-
-
-
-resource "aws_lb_listener" "front_end" {
-  load_balancer_arn = aws_lb.mike_alb.arn
-  port              = "80"
-  protocol          = "HTTPS"
-  ssl_policy        = "ELBSecurityPolicy-2016-08"
-  certificate_arn   = "arn:aws:iam::187416307283:server-certificate/test_cert_rab3wuqwgja25ct3n4jdj2tzu4"
-
-  default_action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.tg1.arn
-  }
+resource "aws_internet_gateway" "my_igw" {
+  vpc_id = "vpc-01f63727dd73687d8"  # Specify your VPC ID
 }
+
