@@ -2,6 +2,7 @@ resource "aws_lb_target_group" "tg1" {
   name     = "tg1"
   port     = 80
   protocol = "HTTP"
+  target_type = "instance"
   vpc_id   = aws_vpc.main.id
 }
 
@@ -9,6 +10,7 @@ resource "aws_lb_target_group" "tg2" {
   name     = "tg2"
   port     = 80
   protocol = "HTTP"
+  target_type = "instance"
   vpc_id   = aws_vpc.main.id
 }
 
@@ -17,7 +19,7 @@ resource "aws_instance" "instance1" {
   instance_type = var.instance_type
   key_name      = var.key_name
   subnet_id     = aws_subnet.subnet1.id
-  security_groups = [aws_security_group.allow_web.name]
+  security_groups = [aws_security_group.gen-sg.name]
 
   user_data = <<-EOF
               #!/bin/bash
@@ -38,7 +40,7 @@ resource "aws_instance" "instance2" {
   instance_type = var.instance_type
   key_name      = var.key_name
   subnet_id     = aws_subnet.subnet2.id
-  security_groups = [aws_security_group.allow_web.name]
+  security_groups = [aws_security_group.gen-sg.name]
 
   user_data = <<-EOF
               #!/bin/bash
@@ -59,7 +61,7 @@ resource "aws_instance" "instance3" {
   instance_type = var.instance_type
   key_name      = var.key_name
   subnet_id     = aws_subnet.subnet2.id
-  security_groups = [aws_security_group.allow_web.name]
+  security_groups = [aws_security_group.gen-sg.name]
 
   user_data = <<-EOF
               #!/bin/bash
@@ -80,7 +82,7 @@ resource "aws_instance" "instance4" {
   instance_type = var.instance_type
   key_name      = var.key_name
   subnet_id     = aws_subnet.subnet2.id
-  security_groups = [aws_security_group.allow_web.name]
+  security_groups = [aws_security_group.gen-sg.name]
 
   user_data = <<-EOF
               #!/bin/bash
