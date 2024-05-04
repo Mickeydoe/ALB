@@ -108,13 +108,13 @@ resource "aws_lb_target_group_attachment" "tga2" {
   port             = 80
 }
 
-resource "aws_lb_target_group_attachment" "tga1" {
+resource "aws_lb_target_group_attachment" "tga3" {
   target_group_arn = aws_lb_target_group.tg1.arn
   target_id        = aws_instance.instance3.id
   port             = 80
 }
 
-resource "aws_lb_target_group_attachment" "tga2" {
+resource "aws_lb_target_group_attachment" "tga4" {
   target_group_arn = aws_lb_target_group.tg2.arn
   target_id        = aws_instance.instance4.id
   port             = 80
